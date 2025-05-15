@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  input[type='text'] {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 16px;
+    font-size: 16px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #21867a;
+  }
+  
+  .task {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: #fafafa;
+  }
+  
+  .priority-high {
+    color: red;
+  }
+  
+  .priority-medium {
+    color: orange;
+  }
+  
+  .priority-low {
+    color: green;
+  }
+  
+  .overdue {
+    border-color: red;
+    background-color: #ffe5e5;
+  }
+  
+  .overdue-label {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  
+  .editable {
+    background-color: #f0f8ff;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI-Powered To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>AI-Powered To-Do List</h1>
+    <input id="taskInput" type="text" placeholder="Enter a task like 'Submit report tomorrow'">
+    <button onclick="addTask()">Add Task</button>
+    <div id="tasks"></div>
+  </div>
+
+  <script>
+    async function addTask() {
+      const input = document.getElementById("taskInput");
+      if (!input.value.trim()) return;
+      const response = await fetch("http://localhost:5000/add-task", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task: input.value })
+      });
+      const data = await response.json();
+      input.value = "";
+      renderTask(data);
+    }
+
+    function renderTask(task) {
+      const today = new Date().toISOString().split("T")[0];
+      const overdue = task.due < today;
+
+      const taskDiv = document.createElement("div");
+      taskDiv.className = "task";
+      if (overdue) taskDiv.classList.add("overdue");
+
+      const priorityClass = {
+        High: "priority-high",
+        Medium: "priority-medium",
+        Low: "priority-low"
+      }[task.priority] || "priority-low";
+
+      taskDiv.innerHTML = `
+        <input type="checkbox" class="complete-checkbox" onchange="toggleComplete(this)">
+        <p><strong>Task:</strong> <span class="editable" contenteditable="true">${task.task}</span></p>
+        <p><strong>Category:</strong> ${task.category}</p>
+        <p><strong class="${priorityClass}">Priority: ${task.priority}</strong></p>
+        <p><strong>Due:</strong> ${task.due} ${overdue ? "<span class='overdue-label'>(Overdue!)</span>" : ""}</p>
+        <button onclick="deleteTask(this)">Delete</button>
+      `;
+
+      document.getElementById("tasks").prepend(taskDiv);
+    }
+
+    function toggleComplete(checkbox) {
+      const taskDiv = checkbox.parentElement;
+      taskDiv.classList.toggle("completed", checkbox.checked);
+    }
+
+    function deleteTask(button) {
+      const taskDiv = button.parentElement;
+      taskDiv.remove();
+    }
+  </script>
+</body>
+</html>
