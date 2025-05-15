@@ -1,1 +1,2 @@
 # AI_ToDo_List
+#This project is an AI-powered To-Do List web application that enhances productivity by categorizing, prioritizing, and setting due dates for user-input tasks using simple natural language processing techniques. The AI component intelligently interprets task descriptions to assign priorities, deadlines, and categories automatically, making the task management process more efficient.
